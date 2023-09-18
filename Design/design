@@ -1,0 +1,24 @@
+Domains :
+
+1. Student - The registered Student who is eligible to take test. [Part of School Admin System] - [NOT YET IMPLEMENTED]
+2. Test - Type of tests that can be administered to students, example.  lets say there is a GMAT math 1, GMAT math 2, GMAT English 1, GMAT Logic 1 etc. which would have their own questions
+3. Question - The Question data that will be saved in te database.
+
+Implemented Models : 1. Test  2. Question
+
+Test:
+1. Test will contain all the questions that are relevant for that test. based on the question Id .
+2.
+
+
+
+Exam :
+1. Start Exam will create a new exam entity into the database and at the SAME time send the first question to the user - logic implememted in examService.
+2. question serving logic will be included in the Exam module.
+
+
+
+
+
+Idea:
+1. Exam inside Student.
