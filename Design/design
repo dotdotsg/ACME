@@ -4,11 +4,11 @@ Domains :
 2. Test - Type of tests that can be administered to students, example.  lets say there is a GMAT math 1, GMAT math 2, GMAT English 1, GMAT Logic 1 etc. which would have their own questions
 3. Question - The Question data that will be saved in te database.
 
-Implemented Models : 1. Test  2. Question
+Implemented Models : 1. Test  2. Question  3. Student   4. Exam
 
 Test:
 1. Test will contain all the questions that are relevant for that test. based on the question Id .
-2.
+2. Test will be used to fetch questions saved in it as questionId
 
 
 
