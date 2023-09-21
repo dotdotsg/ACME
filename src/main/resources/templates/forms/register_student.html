@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam</title>
+    <link rel="stylesheet" href="../style/formcss.css"/>
+</head>
+<body>
+    <div class="bgimg">
+    <h1>Student Registration</h1>
+<form action="http://127.0.0.1:8080/student/add-student-from-form" method="post">
+    <label for="studentName">Student Name:</label><br>
+    <input type="text" id="studentName" name="studentName" value=""><br><br>
+
+    <label for="rollNo">Roll No.:</label><br>
+    <input type="text" id="rollNo" name="rollNo" value=""><br><br>
+
+    <label for="email">Email id:</label><br>
+    <input type="email" id="email" name="rollNo" value=""><br><br>
+
+
+    <input type="submit" value="Submit">
+    <button onclick="history.back()">Add another student</button>
+</form>
+
+<p></p>
+</div>
+</body>
+</html>
