@@ -27,12 +27,12 @@ public class Exam {
     String examId;        //User given Id , again Unique for each student -> unique instance of exam created for each student
     String studentId;
     String testId;
-    int score;
-    List<String> attemptedQuestionIds;
-    String studentAns;// check if studentAns == correctAns in exam service layer
-    String correctAns;// to copy the correct ans from the Question object cuz Only QuestionDTO will be sent wich does not contain the correctAns of Question.
-    int currentQuestionIndex;
-    int currentSubQuestionIndex;
+    private int score;
+    private List<String> attemptedQuestionIds;
+    private String studentAns;// check if studentAns == correctAns in exam service layer
+    private String correctAns;// to copy the correct ans from the Question object cuz Only QuestionDTO will be sent wich does not contain the correctAns of Question.
+    private int currentQuestionIndex;
+    private int currentSubQuestionIndex;
 
 
 

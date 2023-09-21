@@ -36,13 +36,11 @@ public class AcmeServiceImpl implements AcmeService {
             return questionOptionalObject.get();
         }
         return null;
-    }
+    } //done
 
     @Override
     public Question getQuestionByQuestionId(String questionId) {
         Question question =  acmeRepository.findByQuestionId(questionId);
-        System.out.println("called getQuestionById :"+questionId+" | does it exist : |"+question);
-
         return question;
     } // done
     @Override
@@ -81,7 +79,7 @@ public class AcmeServiceImpl implements AcmeService {
         query.addCriteria(Criteria.where("tags").in(tags));
         List<Question> questions = mongoTemplate.find(query, Question.class);
         return questions;
-    }
+    }  //done using mongoTemplate query
     // show all Questions  [DONE]
     // Search questions by keywords
     // update / Edit questions  [DONE]

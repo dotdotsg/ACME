@@ -24,6 +24,6 @@ public class Student {  // This class is not useful if admin system have separat
     String rollNo;
     String email;
     //String administeredTestId;    // Map needed to store the score also
-    Map<String, Integer> administeredTest;
+    String administeredTestId;
 
 }

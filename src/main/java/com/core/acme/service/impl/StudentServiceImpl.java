@@ -19,6 +19,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
     @Autowired
     MongoTemplate mongoTemplate;
+    
     @Override
     public Student saveStudent(Student student) {
         student.setStudentId(student.getStudentName()+student.getRollNo());
@@ -47,7 +48,7 @@ public class StudentServiceImpl implements StudentService {
             savedStudent.setStudentName(student.getStudentName());
             savedStudent.setEmail(student.getEmail());
             savedStudent.setRollNo(student.getRollNo());
-            savedStudent.setAdministeredTest(student.getAdministeredTest()); //
+            //savedStudent.setAdministeredTest(student.getAdministeredTest()); //
             return studentRepository.save(savedStudent);
         }
         return null;

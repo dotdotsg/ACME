@@ -3,8 +3,7 @@ package com.core.acme.controller;
 import com.core.acme.domain.Exam;
 import com.core.acme.domain.Question;
 import com.core.acme.service.ExamService;
-import com.core.acme.service.StudentService;
-import com.core.acme.service.TestService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +15,6 @@ public class ExamController {
    // @Autowired
     @Autowired
     public ExamService examService; // should not be used creating a loop
-    @Autowired
-    private StudentService studentService;
-    @Autowired
-    private TestService testService;
 
     @PostMapping("/create_exam")
     public Exam createExam(@RequestBody Exam exam){// @RequestBody
@@ -32,8 +27,8 @@ public class ExamController {
 
     }
     // start new exam is a different function, it sends the first question and starts the process
-    @GetMapping("/start-exam/{examId}")
-    public Question startExam(@PathVariable String examId){
+    @GetMapping("/start-exam")
+    public Question startExam(String examId){ // @PathVariable
         return examService.getFirstQuestion(examId);
     }
 
@@ -41,6 +36,11 @@ public class ExamController {
     public Question updateExamAndGetNextQuestion( String examId, String studentAns){
         examService.updateExam(examId,studentAns);
         return examService.getNextQuestion(examId);
+    }
+    @GetMapping("/reset-exam")
+    public Exam resetExam( String examId){
+        examService.resetExam(examId);
+        return examService.getExamByExamId(examId);
     }
     @GetMapping("/find-exam-by-exam-id")
     public Exam getExamByExamId( String examId){

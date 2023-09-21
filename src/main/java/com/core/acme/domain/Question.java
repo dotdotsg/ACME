@@ -29,7 +29,7 @@ public class Question {
     private String id;
     @Indexed(unique = true)
     @JsonProperty("questionId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String questionId;
     String question;
     int difficultyLevel; //maybe a scale of 1 to 5 or 1 to 10.

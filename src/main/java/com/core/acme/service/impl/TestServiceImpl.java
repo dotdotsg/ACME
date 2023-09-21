@@ -39,4 +39,9 @@ public class TestServiceImpl implements TestService {
     public Test getTestByTestId(String testId) {
         return testRepository.findByTestId(testId);
     }
+
+    @Override
+    public Test getTestByName(String testName) {
+        return testRepository.findByTestName(testName);
+    }
 }

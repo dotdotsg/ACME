@@ -22,20 +22,20 @@ public class StudentTests {
     @Test
     void findAllStudent(){
         List<Student> allStudents =  studentService.getAllStudents();
-        System.out.println("student List  :"+allStudents.size());
-        for(int i =0; i<allStudents.size();i++){
-            System.out.println(allStudents.get(i).toString());
-        }
+        // System.out.println("student List  :"+allStudents.size());
+        // for(int i =0; i<allStudents.size();i++){
+        //     System.out.println(allStudents.get(i).toString());
+        // }
         assertNotNull(allStudents);
     }
     @Test
     void findStudentByName(){
         String studentName = "aaryan";
         List<Student> allStudentsWithName =  studentService.retreiveStudent(studentName);
-        System.out.println("student List  :"+allStudentsWithName.size());
-        for(int i =0; i<allStudentsWithName.size();i++){
-            System.out.println(allStudentsWithName.get(i).toString());
-        }
+        // System.out.println("student List  :"+allStudentsWithName.size());
+        // for(int i =0; i<allStudentsWithName.size();i++){
+        //     System.out.println(allStudentsWithName.get(i).toString());
+        // }
         assertNotNull(allStudentsWithName);
     }
 }

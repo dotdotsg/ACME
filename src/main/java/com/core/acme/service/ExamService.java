@@ -16,4 +16,5 @@ public interface ExamService{
     Exam getExamByExamId(String id);
     void deleteAllExam();
     void deleteByExamId(String examId);
+    void resetExam(String examId);
 }
