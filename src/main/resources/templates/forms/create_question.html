@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create question</title>
+    <link rel="stylesheet" href="../style/formcss.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="bgimg">
+    <h1>Create New Question</h1>
+<form action="http://127.0.0.1:8080/acme/create-question-from-form" method="post">
+    <label for="questionId">Question Id:</label>
+    <input type="text" id="questionId" name="questionId" value=""><br>
+
+    <label for="question">Question:</label>
+    <input type="text" id="question" name="question" value=""><br>
+
+    <label for="options">Options:</label>
+    <input type="options" id="options" name="options" value=""><br>
+
+    <label for="tags">Tags:</label>
+    <input type="text" id="tags" name="tags" value=""><br>
+
+    <label for="correctOpt">Correct answer/option:</label>
+    <input type="text" id="correctOpt" name="correctOpt" value=""><br>
+
+    <label for="difficultyLevel">Difficulty Level:</label>
+    <select name="difficultyLevel" id="difficultyLevel">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select><br><br>
+    <!-- <input type="" id="difficultyLevel" name="difficultyLevel" value=""><br> -->
+
+    <input class="button button2" type="submit" value="Submit">
+    <!--    <button onclick="history.back()">Add another student</button>-->
+</form>
+</div>
+
+
+<script>
+    
+</script>
+<p>
+</body>
+</html>

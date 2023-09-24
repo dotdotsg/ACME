@@ -1,12 +1,10 @@
 package com.core.acme.service.impl;
 
-import com.core.acme.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-// need to import mongodb stuff for query
 import com.core.acme.domain.Question;
 import com.core.acme.repository.AcmeRepository;
 import com.core.acme.service.AcmeService;
@@ -32,18 +30,12 @@ public class AcmeServiceImpl implements AcmeService {
     public Question getQuestionById(String id) {
         Optional<Question> questionOptionalObject =  acmeRepository.findById(id);
         System.out.println("called getQuestionById :"+id);
-        if(questionOptionalObject.isPresent()){
-            return questionOptionalObject.get();
-        }
-        return null;
-    }
+        return questionOptionalObject.orElse(null);
+    } //done
 
     @Override
     public Question getQuestionByQuestionId(String questionId) {
-        Question question =  acmeRepository.findByQuestionId(questionId);
-        System.out.println("called getQuestionById :"+questionId+" | does it exist : |"+question);
-
-        return question;
+        return acmeRepository.findByQuestionId(questionId);
     } // done
     @Override
     public Question updateQuestion(String qid, Question question) {
@@ -79,9 +71,8 @@ public class AcmeServiceImpl implements AcmeService {
     public List<Question> searchQuestionsByTag(List<String> tags) {
         Query query = new Query();
         query.addCriteria(Criteria.where("tags").in(tags));
-        List<Question> questions = mongoTemplate.find(query, Question.class);
-        return questions;
-    }
+        return mongoTemplate.find(query, Question.class);
+    }  //done using mongoTemplate query
     // show all Questions  [DONE]
     // Search questions by keywords
     // update / Edit questions  [DONE]

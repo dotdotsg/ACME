@@ -1,6 +1,4 @@
 package com.core.acme.controller;
-
-import com.core.acme.domain.Question;
 import com.core.acme.domain.Test;
 import com.core.acme.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class TestController {
         return ResponseEntity.ok().body(savedTest);
     }
     @PostMapping("/create-test-from-form")
-    public ResponseEntity<Test> saveTestFromForm(@RequestBody Test test)
+    public ResponseEntity<Test> saveTestFromForm( Test test)
     {
         Test savedTest = testService.saveTest(test);
         return ResponseEntity.ok().body(savedTest);
@@ -44,5 +42,9 @@ public class TestController {
     @GetMapping("/test-list")
     public ResponseEntity<List<Test>> getAllTests(){
         return ResponseEntity.ok().body(testService.getAllTests());
+    }
+    @GetMapping("/get-test-by-test-name")
+    public ResponseEntity<Test> getTestByName(String testName){
+        return ResponseEntity.ok().body(testService.getTestByName(testName));
     }
 }
