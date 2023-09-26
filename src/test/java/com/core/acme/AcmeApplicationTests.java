@@ -23,13 +23,10 @@ import static com.mongodb.assertions.Assertions.assertNotNull;
 class AcmeApplicationTests {
 
 	@Autowired
-	private final AcmeService acmeService;
+	private AcmeService acmeService;
 	@Autowired
-	private final TestService testService;
-	AcmeApplicationTests(TestService testService, AcmeService acmeService){
-		this.testService = testService;
-		this.acmeService = acmeService;
-	}
+	private TestService testService;
+
 	@Test
 	void contextLoads() {
 	}

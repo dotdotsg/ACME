@@ -1,5 +1,6 @@
 package com.core.acme.service.impl;
 
+import com.core.acme.DTO.QuestionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -61,6 +62,18 @@ public class AcmeServiceImpl implements AcmeService {
     public void deleteAllQuestions() {
         acmeRepository.deleteAll();
     }  // done
+
+    @Override
+    public QuestionDTO convertQuestionToDTO(Question question) {
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setId(question.getId());
+        questionDTO.setQuestionId(questionDTO.getQuestionId());
+        questionDTO.setTags(question.getTags());
+        questionDTO.setQuestion(question.getQuestion());
+        questionDTO.setDifficultyLevel(question.getDifficultyLevel());
+        questionDTO.setOptions(question.getOptions());
+        return questionDTO;
+    }
 
     @Override
     public List<Question> getAllQuestions() {

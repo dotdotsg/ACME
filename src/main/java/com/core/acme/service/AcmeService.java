@@ -1,5 +1,6 @@
 package com.core.acme.service;
 
+import com.core.acme.DTO.QuestionDTO;
 import com.core.acme.domain.Question;
 import org.bson.types.ObjectId;
 
@@ -20,7 +21,7 @@ public interface AcmeService {
     void deleteQuestion(String qid);
     void deleteAllQuestions();
 
-
+    QuestionDTO convertQuestionToDTO(Question question);
 
 
 

@@ -10,12 +10,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.List;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class QuestionDTO {
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public class Question {
         @Id
         private String id;
 
@@ -29,7 +27,4 @@ public class QuestionDTO {
         //String correctOpt;
 
 
-
-
     }
-}

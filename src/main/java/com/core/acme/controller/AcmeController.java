@@ -26,7 +26,7 @@ public class AcmeController {
     }
 
     // Get Question by ID
-    @GetMapping("/{id}")
+    @GetMapping("find-by-id/{id}")
     public Question getQuestionById(@PathVariable String id) {
         System.out.println("Controller checking id recieved | "+id );
         return acmeService.getQuestionById(id);

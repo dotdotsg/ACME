@@ -21,12 +21,14 @@
       font-family: "Courier New", Courier, monospace;
       /* Set the font-size to 25 pixels */
       font-size: 25px;
+      /*cursor style*/
+      cursor: url('img/Cute-Little-Factory-Womens-Pen.256.cur'),auto;
     }
 
     /* Position text in the top-left corner */
     .topleft {
       position: absolute;
-      top: 0;
+      top: 25px;
       left: 16px;
     }
 
@@ -113,4 +115,8 @@
   .button4:hover {
     background-color: #def10c;
     color: white;
+  }
+
+  .cursor_shape1 {
+    cursor: url('img/Cute-Little-Factory-Womens-Pen.256.cur');
   }

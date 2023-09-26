@@ -9,8 +9,13 @@
 <body>
 
 <div class="bgimg">
+    <div class="topright">
+        <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
+    </div>
     <h1>Create New Question</h1>
 <form action="http://127.0.0.1:8080/acme/create-question-from-form" method="post">
+    <fieldset>
+        <legend>Question Details</legend>
     <label for="questionId">Question Id:</label>
     <input type="text" id="questionId" name="questionId" value=""><br>
 
@@ -38,6 +43,7 @@
 
     <input class="button button2" type="submit" value="Submit">
     <!--    <button onclick="history.back()">Add another student</button>-->
+    </fieldset>
 </form>
 </div>
 
