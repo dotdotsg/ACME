@@ -17,7 +17,12 @@ Exam :
 2. question serving logic will be included in the Exam module.
 
 
+Question :
+1. The basic question object
 
+Student :
+1. Student details saved
+2. studentId is assigned which will be used to assign a test to it from create exam object.
 
 
 Idea:

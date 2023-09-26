@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,33 +9,53 @@
 
     <div class="bgimg">
         
-        <form action="http://127.0.0.1:8080/exam/start-exam" method="post">
-            <fieldset>
+        <form id="examIdDetail" class="middle" >
+            <fieldset class="middle">
                 <legend>Enter Exam Id</legend>
                     <label for="examId">Exam Id:</label><br>
                     <input type="text" id="examId" name="examId" value="" required><br>
+                <input class="button button2" type="submit" value="START EXAM">
+                <!-- <button class="button button2" onclick=actionMethod(this.value)>START EXAM</button> -->
+
             </fieldset>
         </form>
-        <button class="button button2" onclick=postexamId(examId)>START EXAM</button>
     </div>
 
 
 
-
-
-
 <script>
-    function actionMethod() {
-        console.log("check alive")
-    fetch("http://127.0.0.1:8080/exam/start-exam",{
-  method: 'POST',
-  body: JSON.stringify(object),
+  const myForm = document.getElementById("examIdDetail");
+  myForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    console.log(formData);
+    const response = fetch("http://127.0.0.1:8080/exam/start-exam",{
+      method: "POST",
+      body: formData
+    })
+    const questionData = response.json();
+    console.log(questionData[0])
+  });
+    async function actionMethod(value) {
+      console.log(value);
+      let examId = document.getElementById("examId");
+      console.log("actionMethod called");
+      console.log("examId recieved : ",examId[0]);
+        console.log(examId)
+    const response = await fetch("http://127.0.0.1:8080/exam/start-exam",{
+  method: 'GET',
+  body: JSON.stringify(examId[0]),
   headers: {
     'Content-Type': 'application/json'
   }
-})
-            .then(Response => Response.json())
-            .then(data => createList(data));
+});isRecieved = response.ok
+if(isRecieved){
+jsonData = await response.json();
+console.log(jsonData);
+}
+            // .then(Response => Response.json())
+            // .then(data => createList(data));
     }
     function createList(data) {
     const mainUL = document.createElement('ol');
@@ -58,8 +78,34 @@ async function postexamId(examId) {
   console.log(responseText);
 }
 
-</script>
+    async function requestJSON(value) {
+    console.log(value);
 
-<p>If you click the "Submit" button, the form-data will be sent to page http://127.0.0.1:8080/exam/create-exam-from-form </p>
+
+    const jsonData = await (await fetch("http://127.0.0.1:8080/exam/start-exam")).json();
+    console.log(jsonData);
+
+    convertTable(jsonData)
+
+}
+function arrangeQuestion(jsonData){
+    let container = $("#container");
+    let demo = $("demo");
+    let table = $("<table>");
+    let cols = Object.keys(jsonData[0]);
+
+
+
+
+    container.empty();
+    container.append(table) // Append the table to the container element
+    demo.append(jsonData.length())
+    }
+
+
+
+
+</script>
+<p> </p>
 </body>
 </html>

@@ -7,6 +7,9 @@
 </head>
 <body>
     <div class="bgimg">
+        <div class="topright">
+            <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
+        </div>
     <h1>Student Registration</h1>
 <form action="http://127.0.0.1:8080/student/add-student-from-form" method="post">
     <label for="studentName">Student Name:</label><br>
@@ -19,7 +22,7 @@
     <input type="email" id="email" name="rollNo" value=""><br><br>
 
 
-    <input type="submit" value="Submit">
+    <input class="button button1" type="submit" value="Submit">
     <button onclick="history.back()">Add another student</button>
 </form>
 

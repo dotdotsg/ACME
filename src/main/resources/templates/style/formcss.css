@@ -26,7 +26,7 @@
       /* Position text in the top-left corner */
       .topleft {
         position: absolute;
-        top: 0;
+        top: 25;
         left: 16px;
       }
   

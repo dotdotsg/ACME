@@ -1,5 +1,6 @@
 package com.core.acme.service.impl;
 
+import com.core.acme.DTO.QuestionDTO;
 import com.core.acme.domain.Exam;
 import com.core.acme.domain.Question;
 import com.core.acme.domain.Test;
@@ -11,11 +12,14 @@ import com.core.acme.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Struct;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ExamServiceImpl implements ExamService {
+
+    private boolean isFinished=false;
     @Autowired
     private final ExamRepository examRepository;
     @Autowired
@@ -44,6 +48,11 @@ public class ExamServiceImpl implements ExamService {
         Optional<Exam> examOptionalObject = examRepository.findById(id);
         return examOptionalObject.orElse(null);
     } // by database id
+
+    @Override
+    public List<Exam> getExamList() {
+        return examRepository.findAll();
+    }
 
     @Override
     public Exam getExamByExamId(String examId){
@@ -146,7 +155,8 @@ public class ExamServiceImpl implements ExamService {
             } else {
                 // We are on last Question no more questions exist, and we have given incorrect answer.
                 // End Exam and Display Results.
-                displayResults(examId);
+                isFinished= true;
+                displayResults(examId); // only for console
             }
             return false;
         }
@@ -163,17 +173,22 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
-    public Question getFirstQuestion(String examId){
+    public boolean examEnded() {
+        return isFinished;
+    }
+
+    @Override
+    public QuestionDTO getFirstQuestion(String examId){
         Exam exam = getExamByExamId(examId);
         String testId = exam.getTestId();
         Test test = testService.getTestByTestId(testId);
         String firstQuestionId = test.getQuestionsInTest().get(exam.getCurrentQuestionIndex()).get(exam.getCurrentSubQuestionIndex());
         System.out.println("first question : "+firstQuestionId);
-        return acmeService.getQuestionByQuestionId(firstQuestionId);
+        return acmeService.convertQuestionToDTO(acmeService.getQuestionByQuestionId(firstQuestionId));
     }
 
     @Override
-    public Question getNextQuestion(String examId){
+    public QuestionDTO getNextQuestion(String examId){
         //if(isCorrect) correct and incorrect logic has been stated in the check answer and next question index has been decided in checkAnswer method
         // we just have to return the next question using the exam.currentQuestionIndex and currentSubQuestionIndex
         Exam exam = examRepository.findByExamId(examId);
@@ -181,7 +196,7 @@ public class ExamServiceImpl implements ExamService {
         Test test = testService.getTestByTestId(testId);
         String nextQuestionId = test.getQuestionsInTest().get(exam.getCurrentQuestionIndex()).get(exam.getCurrentSubQuestionIndex());
         System.out.println("Next Question called : "+nextQuestionId);
-        return acmeService.getQuestionByQuestionId(nextQuestionId);
+        return acmeService.convertQuestionToDTO(acmeService.getQuestionByQuestionId(nextQuestionId));
     }
     
     
