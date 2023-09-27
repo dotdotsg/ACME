@@ -39,3 +39,13 @@ feedbacks:
 
 Doubt :
 we will have to give a fixed Number of questions to be served,if the questions will be fetched based on the
+in both the design we will still have to provide a fixed number of question value because ,
+
+
+
+easy , medium , hard
+
+[easy, medium, hard, easy, medium, hard ........]  for 3 level
+[easy, hard, easy, hard, easy, hard ...........]   for 2 level
+[easy, medium, hard, v.hard, easy , medium, hard, v,hard..........[
+to give n questions to every student, we need to add 2n, 3, 4n questions, each in equal number
