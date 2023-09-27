@@ -12,7 +12,6 @@ public interface StudentService {
     Student updateStudent(String id, Student student);
     List<Student> getAllStudents(); // get all students
     void deleteAllStudents();
-    void deleteStudentById(String id);
-    //int updateStudentScore(boolean isCorrect); // part of examService
+    void deleteByStudentId(String id);
 
     }

@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/acme")
+@CrossOrigin(origins = "*")
 public class AcmeController {
     @Autowired
     private final AcmeService acmeService;

@@ -142,6 +142,8 @@ public class ExamServiceImpl implements ExamService {
                 System.out.println("Q:" + exam.getCurrentQuestionIndex() + "subQ:" + exam.getCurrentSubQuestionIndex());
 
             } else {
+                // we have answered incorrectly and no more questions left now, so EXAM ENDED
+                isFinished=true;
                 displayResults(examId);
             }
             System.out.println("Exam-saved-correct ans"+examRepository.save(exam));
@@ -169,11 +171,12 @@ public class ExamServiceImpl implements ExamService {
         existingExam.setScore(0);
         existingExam.setCurrentQuestionIndex(0);
         existingExam.setCurrentSubQuestionIndex(0);
+        isFinished = false;
         examRepository.save(existingExam);
     }
 
     @Override
-    public boolean examEnded() {
+    public boolean examEnded(String examId) {
         return isFinished;
     }
 

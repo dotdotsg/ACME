@@ -27,3 +27,15 @@ Student :
 
 Idea:
 1. Exam inside Student.
+
+
+
+
+
+feedbacks:
+1. add test cases for exam logic
+2. Exception Handling
+
+
+Doubt :
+we will have to give a fixed Number of questions to be served,if the questions will be fetched based on the

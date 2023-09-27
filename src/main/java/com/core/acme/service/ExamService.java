@@ -21,6 +21,5 @@ public interface ExamService{
     void deleteAllExam();
     void deleteByExamId(String examId);
     void resetExam(String examId);
-
-    boolean examEnded();
+    boolean examEnded(String examId);
 }

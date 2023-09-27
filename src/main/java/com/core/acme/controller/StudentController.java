@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student")
+@CrossOrigin(origins = "*")
 public class StudentController {
     @Autowired
     private final StudentService studentService;
@@ -43,5 +44,13 @@ public class StudentController {
     public ResponseEntity<List<Student>> findStudentByName(@RequestParam String studentName)
     {
         return ResponseEntity.ok().body(studentService.retreiveStudent(studentName));
+    }
+    @DeleteMapping("/delete-all-student")
+    public void deleteAllStudent(){
+        studentService.deleteAllStudents();
+    }
+    @DeleteMapping("/delete-by-student-id")
+    public void deleteStudentByStudentId(String studentId){
+        studentService.deleteByStudentId(studentId);
     }
 }

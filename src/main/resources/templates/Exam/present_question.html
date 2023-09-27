@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Exam</title>
+    <link rel="stylesheet" href="../style/formcss.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+
+<body>
+    <div class="bgimg">
+        <!-- <button id="saveExamId" class="topright button button2" value="" disabled></div> -->
+        <div id="input">
+            <button class="topright button button2" onclick="window.location.href='/'">ACME Home</button>
+            <div class="middle">
+                <fieldset>
+                    <legend><h2>Start Exam : Enter your exam id</h2></legend>
+                    <label for="examId">Exam Id:</label><br>
+                        <input type="text" id="examId" name="examId" value="" required><br>
+                        <button class="button button2" onclick = "fetchData()"> Start Exam </button>
+                </fieldset>
+            </div>
+        </div>
+
+
+        <div class="middle" id = "output">
+            <div id="QuestionField"></div>
+                <div id="optionField"></div>
+        </div> 
+
+    </div>
+
+
+   <script>
+    // let saveExamId = document.getElementById("saveExamId");
+    let examIdSavedValue;
+    let input = document.getElementById("input");
+    let output = document.getElementById('output');
+      function fetchData() {
+        // remove input elements
+        let examId = document.getElementById("examId").value;
+        examIdSavedValue = examId;console.log(examIdSavedValue);
+        input.innerHTML = ""; // delete the input fields/containers
+        console.log(examId);
+         fetch("http://127.0.0.1:8080/exam/start-exam"+"?examId="+examId, {
+        method: "GET",
+        mode: "cors",
+        //credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        })
+            .then(response => response.json())
+            .then(data => {
+            //output.innerHTML += "id = " + data.id + "<br/>";
+            output.innerHTML += "tags : " + data.tags + "<br/><br/>";
+            output.innerHTML += "Question : " + data.question + "<br/>";
+            //output.innerHTML += "options = " + data.options + "<br/>";
+            data.options.forEach(option => {
+                output.innerHTML += "<input type='radio' name='option' value='"+option+"'>"+option+"<br/>"; // value=""
+            });
+            output.innerHTML += "<button class='button button2' onclick='radioOutput()'>submit answer</button>" + "<br/>";
+
+            // output.innerHTML += "rating = " + data.rating + "<br/>";
+            // output.innerHTML += "stock = " + data.stock + "<br/>";
+            });
+        }
+        function radioOutput(){
+            let studentAns;
+            document.getElementsByName("option").forEach(option => {
+                if(option.checked){
+                    console.log(option.value, examIdSavedValue);
+                    studentAns=option.value;
+                }
+            });
+            updateData(examIdSavedValue,studentAns)
+        }
+        function updateData(examId,studentAns) {
+        // remove output elements
+        
+        output.innerHTML = ""; // delete the input fields/containers
+        console.log(examId);
+         fetch("http://127.0.0.1:8080/exam/update-exam"+"?examId="+examId+"&"+"studentAns="+studentAns, {
+        method: "GET",
+        mode: "cors",
+        //credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        })
+            .then(response => response.json())
+            .then(data => {
+            //output.innerHTML += "id = " + data.id + "<br/>";
+            output.innerHTML += "tags = " + data.tags + "<br/>";
+            output.innerHTML += "Question = " + data.question + "<br/>";
+            //output.innerHTML += "options = " + data.options + "<br/>";
+            data.options.forEach(option => {
+                output.innerHTML += "<input type='radio' name='option' value='"+option+"'>"+option+"<br/>"; // value=""
+            });
+            output.innerHTML += "<button class='button button2' onclick='radioOutput()'>submit answer</button>" + "<br/>";
+
+            // output.innerHTML += "rating = " + data.rating + "<br/>";
+            // output.innerHTML += "stock = " + data.stock + "<br/>";
+            });
+        }
+        </script>
+    </body>
+</html>

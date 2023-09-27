@@ -31,6 +31,11 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    public void deleteByTestId(String testId) {
+        testRepository.deleteByTestId(testId);
+    }
+
+    @Override
     public Test getTestById(String id) {
         return testRepository.findById(id).get();
     }

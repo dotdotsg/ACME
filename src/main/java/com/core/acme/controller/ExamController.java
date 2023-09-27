@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/exam")
+@CrossOrigin(origins = "*")
 public class ExamController {
 
    // @Autowired
@@ -40,12 +41,26 @@ public class ExamController {
     @GetMapping("/update-exam")
     public QuestionDTO updateExamAndGetNextQuestion( String examId, String studentAns){
         examService.updateExam(examId,studentAns);
-        if(examService.examEnded()){
-            examHasEnded(examId);
+        if(examService.examEnded(examId)){
+            //examHasEnded(examId); can not call another controller mapping method internally
             return null;
         }
-        return examService.getNextQuestion(examId);
+        else
+            return examService.getNextQuestion(examId);
     }
+    @GetMapping("/check-exam-over")
+    public boolean checkExamOver(String examId){
+        if(examService.examEnded(examId)) {
+            return true; // IMPLEMENT
+        }
+        return false;
+    }
+    @GetMapping("/return-exam-result")
+    public String result(String examId){ // currently returning a string with score but will later be replaced by a dataTransferObject Result with values such as number of questions attempted , number of questions answered correctly , score evaluation of each question map etc.
+        return "Exam Has Ended" +
+                "You Have Scored"+examService.getExamByExamId((examId)).getScore(); // IMPLEMENT
+    }
+
     @GetMapping("/reset-exam")
     public Exam resetExam( String examId){
         examService.resetExam(examId);
@@ -59,19 +74,15 @@ public class ExamController {
     public Exam getExamById(@PathVariable String id){
         return examService.getExamById(id);// find by database id
     }
-    @GetMapping("/serve_question/{id}") // not to be used
-    public Question getQuestionOfTest(@PathVariable String id){
-        return null;
-    }
     @GetMapping("/exam-list")
     public List<Exam> getAllExams(){
         return examService.getExamList();
     }
-    @GetMapping("/delete-all-exams")
+    @DeleteMapping("/delete-all-exams")
     public void deleteAllExams(){
         examService.deleteAllExam();
     }
-    @GetMapping("delete-by-exam-id")
+    @DeleteMapping("delete-by-exam-id")
     public void deleteByExamId(String examId){
         examService.deleteByExamId(examId);
     }

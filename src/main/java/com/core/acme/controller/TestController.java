@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/test")
+@CrossOrigin(origins = "*")
 public class TestController {
     @Autowired
     private final TestService testService;
@@ -46,5 +47,13 @@ public class TestController {
     @GetMapping("/get-test-by-test-name")
     public ResponseEntity<Test> getTestByName(String testName){
         return ResponseEntity.ok().body(testService.getTestByName(testName));
+    }
+    @DeleteMapping("/delete-all-tests")
+    public void deleteAllTests(){
+        testService.deleteAllTests();
+    }
+    @DeleteMapping("/delete-by-test-id")
+    public void deleteByTestId(String testId){
+        testService.deleteByTestId(testId);
     }
 }
