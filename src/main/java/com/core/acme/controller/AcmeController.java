@@ -21,6 +21,10 @@ public class AcmeController {
     public AcmeController(AcmeService acmeService) {
         this.acmeService = acmeService;
     }
+    @GetMapping("/")
+    public String AppIsLive(){
+        return "The APPLICATION is LIVE ";
+    }
     @GetMapping("/home")
     public String Home() {
         return "<h1>Hello Welcome to the Acme Test Platform</h1>";
@@ -55,7 +59,7 @@ public class AcmeController {
     public ResponseEntity<Question> saveQuestionFromForm(Question question)
     {
         Question savedQuestion = acmeService.saveQuestion(question);
-        return ResponseEntity.ok().body(savedQuestion);
+        return ResponseEntity.created(URI.create("http://127.0.0.1:8080/acme/create-question-from-form")).body(savedQuestion);
     }
 
 

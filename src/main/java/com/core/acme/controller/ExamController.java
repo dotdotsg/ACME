@@ -4,13 +4,17 @@ import com.core.acme.DTO.QuestionDTO;
 import com.core.acme.domain.Exam;
 import com.core.acme.domain.Question;
 import com.core.acme.domain.Student;
+import com.core.acme.domain.enums.ExamStatus;
 import com.core.acme.service.ExamService;
 
 
+import lombok.SneakyThrows;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 @RestController
@@ -35,18 +39,29 @@ public class ExamController {
     // start new exam is a different function, it sends the first question and starts the process
     @GetMapping("/start-exam")
     public ResponseEntity<QuestionDTO> startExam(String examId){ // @PathVariable
+        examService.startExam(examId);
         return ResponseEntity.ok().body(examService.getFirstQuestion(examId));
     }
 
     @GetMapping("/update-exam")
-    public QuestionDTO updateExamAndGetNextQuestion( String examId, String studentAns){
-        examService.updateExam(examId,studentAns);
+    public void updateExam( String examId, String studentAns){
+
         if(examService.examEnded(examId)){
             //examHasEnded(examId); can not call another controller mapping method internally
-            return null;
+            examService.setExamStatusCompleted(examId);
+            return ;
         }
-        else
-            return examService.getNextQuestion(examId);
+        examService.updateExam(examId,studentAns);
+        System.out.println("ExamController : UpdateExam ");
+    }
+    @SneakyThrows
+    @GetMapping("/get-next-question")
+    public QuestionDTO getNextQuestion(String examId){
+        if (examService.getExamByExamId(examId).getExamStatus() == ExamStatus.COMPLETED) {
+            throw new Exception("Exam Ended, No More Questions Can Be Returned !");
+        }
+        return examService.getNextQuestion(examId);
+
     }
     @GetMapping("/check-exam-over")
     public boolean checkExamOver(String examId){

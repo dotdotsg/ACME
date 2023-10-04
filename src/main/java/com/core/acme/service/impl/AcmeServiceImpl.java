@@ -67,7 +67,7 @@ public class AcmeServiceImpl implements AcmeService {
     public QuestionDTO convertQuestionToDTO(Question question) {
         QuestionDTO questionDTO = new QuestionDTO();
         questionDTO.setId(question.getId());
-        questionDTO.setQuestionId(questionDTO.getQuestionId());
+        questionDTO.setQuestionId(question.getQuestionId());
         questionDTO.setTags(question.getTags());
         questionDTO.setQuestion(question.getQuestion());
         questionDTO.setDifficultyLevel(question.getDifficultyLevel());

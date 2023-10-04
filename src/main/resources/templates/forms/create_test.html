@@ -11,11 +11,13 @@
 <div class="bgimg">
     <div class="topright">
         <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
-    </div>
-    <h1>Create New Test</h1>
+    </div></br></br></br>
+    <div class="topleft">
+        <p>Create New Test</p>
+    </div></br></br></br>
 <form action="http://127.0.0.1:8080/test/create-test-from-form" method="post">
     <fieldset>
-        <legend>Create Test</legend>
+        <legend>Create Details</legend>
     <label for="testId">Test Id:</label>
     <input type="text" id="testId" name="testId" value=""><br>
 
@@ -35,8 +37,9 @@
         <option value="HARD">HARD</option>
       </select><br><br>
     <!-- <input type="" id="testDifficulty" name="testDifficulty" value=""><br> -->
-    </fieldset>
     <input class="button button2" type="submit" value="Submit">
+
+    </fieldset>
     <!--    <button onclick="history.back()">Add another student</button>-->
 </form>
 </div>

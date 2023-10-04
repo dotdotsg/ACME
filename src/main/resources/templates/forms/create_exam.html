@@ -10,8 +10,13 @@
     <div class="bgimg">
         <div class="topright">
             <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
-        </div>
-        <form action="http://127.0.0.1:8080/exam/create-exam-from-form" method="post">
+        </div><br><br><br>
+        <div class="topleft">
+            <p>Exam Registration</p>
+        </div><br><br><br>
+        <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>  
+
+        <form action="http://127.0.0.1:8080/exam/create-exam-from-form" method="post" target="dummyframe">
             <fieldset>
                 <legend>Exam Details</legend>
                     <label for="examId">Exam Id:</label><br>
@@ -46,6 +51,5 @@
 
 </script>
 
-<p>If you click the "Submit" button, the form-data will be sent to page http://127.0.0.1:8080/exam/create-exam-from-form </p>
 </body>
 </html>
