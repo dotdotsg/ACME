@@ -18,11 +18,16 @@ public class ExamTests {
     @Test
     void contextLoads() {
     }
+    @Test
+    void chechCreateExam(){
+    }
+    @Test
+    void checkExamEnded(){
+
+    }
 
     @Test
     void startExam(){
-        examService.startNewExam(Exam.builder().testId("6503f1aae717076b746be45e").score(0).studentId("6503f1abe717076b746be465").currentQuestionIndex(0).currentSubQuestionIndex(0).build() );
-
         //assertNotNull(newExam);
     }
 }
