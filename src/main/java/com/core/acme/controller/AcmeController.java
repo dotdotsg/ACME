@@ -13,12 +13,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/acme")
+@CrossOrigin(origins = "*")
 public class AcmeController {
     @Autowired
     private final AcmeService acmeService;
 
     public AcmeController(AcmeService acmeService) {
         this.acmeService = acmeService;
+    }
+    @GetMapping("/")
+    public String AppIsLive(){
+        return "The APPLICATION is LIVE ";
     }
     @GetMapping("/home")
     public String Home() {
@@ -54,7 +59,7 @@ public class AcmeController {
     public ResponseEntity<Question> saveQuestionFromForm(Question question)
     {
         Question savedQuestion = acmeService.saveQuestion(question);
-        return ResponseEntity.ok().body(savedQuestion);
+        return ResponseEntity.created(URI.create("http://127.0.0.1:8080/acme/create-question-from-form")).body(savedQuestion);
     }
 
 

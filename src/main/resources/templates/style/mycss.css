@@ -1,6 +1,8 @@
     /* Set height to 100% for body and html to enable the background image to cover the whole page: */
     body, html {
-      height: 100%
+      height: 100%;
+      margin: 0;
+      border: 0;
     }
 
     .bgimg {
@@ -22,7 +24,6 @@
       /* Set the font-size to 25 pixels */
       font-size: 25px;
       /*cursor style*/
-      cursor: url('img/Cute-Little-Factory-Womens-Pen.256.cur'),auto;
     }
 
     /* Position text in the top-left corner */

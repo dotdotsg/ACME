@@ -10,5 +10,6 @@ public interface TestService {
     Test getTestByTestId(String testId);
     List<Test> getAllTests();
     void deleteAllTests();
+    void deleteByTestId(String testId);
     Test getTestByName(String testName);
 }

@@ -25,6 +25,8 @@ public class Test {
     String testName;
     TestDifficulty testDifficulty;
     List<List<String>> questionsInTest; // some frontend logic to create ADD button to copy Question Id from the central Questions repository to the testQuestions
+    int questionsToBeAttempted;
+
 }
 
 enum TestDifficulty{
