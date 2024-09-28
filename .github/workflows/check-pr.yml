@@ -5,8 +5,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - '**.java' # Specify paths if you only want the workflow to run for specific file types (optional)
 
 jobs:
   build:
@@ -18,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       # Set up JDK (example for Java project)
-      - name: Set up JDK 117
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
