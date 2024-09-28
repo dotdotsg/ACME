@@ -1,0 +1,51 @@
+name: Check Pull Request
+
+# This workflow will run on pull request events targeting the main branch
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.java' # Specify paths if you only want the workflow to run for specific file types (optional)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code from the PR
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up JDK (example for Java project)
+      - name: Set up JDK 117
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin' # You can choose the JDK distribution (e.g., adopt, zulu, temurin)
+
+      # Install dependencies if required (Maven)
+      - name: Install Dependencies (Maven example)
+        run: mvn install -DskipTests
+
+      # Run Tests
+      - name: Run Tests
+        run: mvn test
+
+      # Lint code (optional, adjust to your setup)
+      - name: Lint Code
+        run: mvn checkstyle:check
+
+      # Optionally, you can add more checks (like build or static analysis)
+      - name: Build Project
+        run: mvn clean package
+
+      # Optional: Upload test results or coverage reports
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: target/surefire-reports
+
+  # You can add more jobs here (e.g., for different environments or checks)
