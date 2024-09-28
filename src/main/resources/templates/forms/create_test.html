@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create question</title>
+    <link rel="stylesheet" href="../style/formcss.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="bgimg">
+    <div class="topright">
+        <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
+    </div></br></br></br>
+    <div class="topleft">
+        <p>Create New Test</p>
+    </div></br></br></br>
+<form action="http://127.0.0.1:8080/test/create-test-from-form" method="post">
+    <fieldset>
+        <legend>Create Details</legend>
+    <label for="testId">Test Id:</label>
+    <input type="text" id="testId" name="testId" value=""><br>
+
+    <label for="testName">Test Name:</label>
+    <input type="text" id="testName" name="testName" value=""><br>
+
+
+
+    <label for="questionsInTest">Question Ids in test</label>
+    <input type="text" id="questionsInTest" name="questionsInTest" value=""><br>
+
+
+    <label for="testDifficulty">Difficulty Level:</label>
+    <select name="testDifficulty" id="testDifficulty">
+        <option value="EASY">EASY</option>
+        <option value="MEDIUM">MEDIUM</option>
+        <option value="HARD">HARD</option>
+      </select><br><br>
+    <!-- <input type="" id="testDifficulty" name="testDifficulty" value=""><br> -->
+    <input class="button button2" type="submit" value="Submit">
+
+    </fieldset>
+    <!--    <button onclick="history.back()">Add another student</button>-->
+</form>
+</div>
+
+
+<script>
+    
+</script>
+<p>
+</body>
+</html>

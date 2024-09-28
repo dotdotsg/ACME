@@ -1,0 +1,12 @@
+// Snippet to get  env to access Application.property variables
+    private Environment env;
+    String mongodbURL = env.getProperty("spring.data.mongodb.uri");
+    com.mongodb.client.MongoClient client = MongoClients.create( mongodbURL);
+
+// Snippete of query for mongodb
+    Query query = new Query();
+    query.addCriteria(Criteria.where("studentName").is(studentName));
+    List<Student> students = mongoTemplate.find(query, Student.class);
+
+
+    

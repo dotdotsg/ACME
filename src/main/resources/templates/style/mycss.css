@@ -1,0 +1,123 @@
+    /* Set height to 100% for body and html to enable the background image to cover the whole page: */
+    body, html {
+      height: 100%;
+      margin: 0;
+      border: 0;
+    }
+
+    .bgimg {
+      /* Background image */
+      background-image: url('../img/bulbAndBook.jpg');
+      background-size: auto;
+      /* Full-screen */
+      height: 100%;
+      /* Center the background image */
+      background-position: center;
+      /* Scale and zoom in the image */
+      background-size: cover;
+      /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+      position: relative;
+      /* Add a white text color to all elements inside the .bgimg container */
+      color: white;
+      /* Add a font */
+      font-family: "Courier New", Courier, monospace;
+      /* Set the font-size to 25 pixels */
+      font-size: 25px;
+      /*cursor style*/
+    }
+
+    /* Position text in the top-left corner */
+    .topleft {
+      position: absolute;
+      top: 25px;
+      left: 16px;
+    }
+
+    /* Position text in the top-right corner */
+    .topright {
+      position: absolute;
+      top: 25px;
+      right: 16px;
+      
+    }
+
+    /* Position text in the bottom-left corner */
+    .bottomleft {
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+    }
+
+    /* Position text in the middle */
+    .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* Style the <hr> element */
+    hr {
+      margin: auto;
+      width: 40%;
+    }
+
+  .button {
+    border: none;
+    color: white;
+    padding: 5px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 1s;
+    cursor: pointer;
+  }
+  
+  .button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+  }
+  
+  .button1:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .button2 {
+    background-color: black; 
+    color: white; 
+    border: 2px solid white;
+  }
+  
+  .button2:hover {
+    background-color: white;
+    color: black;
+  }
+  .button3 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #ba0c00;
+  }
+  
+  .button3:hover {
+    background-color: #ba0c00;
+    color: white;
+  }
+  .button4 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #def10c;
+  }
+  
+  .button4:hover {
+    background-color: #def10c;
+    color: white;
+  }
+
+  .cursor_shape1 {
+    cursor: url('img/Cute-Little-Factory-Womens-Pen.256.cur');
+  }

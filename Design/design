@@ -1,0 +1,51 @@
+Domains :
+
+1. Student - The registered Student who is eligible to take test. [Part of School Admin System] - [NOT YET IMPLEMENTED]
+2. Test - Type of tests that can be administered to students, example.  lets say there is a GMAT math 1, GMAT math 2, GMAT English 1, GMAT Logic 1 etc. which would have their own questions
+3. Question - The Question data that will be saved in te database.
+
+Implemented Models : 1. Test  2. Question  3. Student   4. Exam
+
+Test:
+1. Test will contain all the questions that are relevant for that test. based on the question Id .
+2. Test will be used to fetch questions saved in it as questionId
+
+
+
+Exam :
+1. Start Exam will create a new exam entity into the database and at the SAME time send the first question to the user - logic implememted in examService.
+2. question serving logic will be included in the Exam module.
+
+
+Question :
+1. The basic question object
+
+Student :
+1. Student details saved
+2. studentId is assigned which will be used to assign a test to it from create exam object.
+
+
+Idea:
+1. Exam inside Student.
+
+
+
+
+
+feedbacks:
+1. add test cases for exam logic
+2. Exception Handling
+
+
+Doubt :
+we will have to give a fixed Number of questions to be served,if the questions will be fetched based on the
+in both the design we will still have to provide a fixed number of question value because ,
+
+
+
+easy , medium , hard
+
+[easy, medium, hard, easy, medium, hard ........]  for 3 level
+[easy, hard, easy, hard, easy, hard ...........]   for 2 level
+[easy, medium, hard, v.hard, easy , medium, hard, v,hard..........[
+to give n questions to every student, we need to add 2n, 3, 4n questions, each in equal number

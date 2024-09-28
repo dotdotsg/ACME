@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>data_list</title>
+  <link rel="stylesheet" type="text/css" href="listStyle.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="bgimg">
+    <div class="topright">
+        <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
+    </div>
+  <h2>Choose the table to view.</h2>
+  
+  <select id="myselect" onchange="requestJSON(this.value)">
+    <option class="" value="">Choose an option:</option>
+    <option class="" value="questions" url="">Questions</option>
+    <option class="" value="students" url="">Students</option>
+    <option class="" value="tests" url="">Tests</option>
+    <option class="" value="exams" url="">Exams</option>
+  </select>
+  <p> Resulting Table: </p> 
+ <div class="smaller" id="container"></div>
+  <p id="demo"></p>
+</div>
+
+
+<script>
+    async function requestJSON(value) {
+    console.log(value);
+    var urlDict = {
+      questions: "http://127.0.0.1:8080/acme/question-list",
+      students: "http://127.0.0.1:8080/student/student-list",
+      tests:"http://127.0.0.1:8080/test/test-list",
+      exams:"http://127.0.0.1:8080/exam/exam-list"
+    };
+    console.log(urlDict[value]);
+
+    const jsonData = await (await fetch(urlDict[value])).json();
+    console.log(jsonData);
+
+    convertTable(jsonData)
+
+}
+function convertTable(jsonData){
+    let container = $("#container");
+    let demo = $("demo");                                
+    let table = $("<table>");
+    let cols = Object.keys(jsonData[0]);
+    
+    let thead = $("<thead>");
+    let tr = $("<tr>");
+    
+    $.each(cols, function(i, item){
+                                        let th = $("<th>");
+                                        th.text(item); // Set the column name as the text of the header cell
+                                        tr.append(th); // Append the header cell to the header row
+                                    });
+    thead.append(tr); // Append the header row to the header
+    table.append(tr) // Append the header to the table
+    
+    $.each(jsonData, function(i, item){
+                                    let tr = $("<tr>");    
+                                    let vals = Object.values(item);
+                                    $.each(vals, (i, elem) => {
+                                            let td = $("<td>");
+                                            td.text(elem); // Set the value as the text of the table cell
+                                            tr.append(td); // Append the table cell to the table row
+                                    });
+                                    table.append(tr); // Append the table row to the table
+                                    });
+    container.empty();
+    container.append(table) // Append the table to the container element
+    demo.append(jsonData.length())                            
+    }
+
+
+
+  
+  </script>
+  
+  </body>
+
+
+  
+</html>
+
+
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register For Exam</title>
+    <link rel="stylesheet" href="../style/formcss.css"/>
+</head>
+<body>
+
+    <div class="bgimg">
+        <div class="topright">
+            <button class="button button2" onclick="window.location.href='/'">ACME Home</button>
+        </div><br><br><br>
+        <div class="topleft">
+            <p>Exam Registration</p>
+        </div><br><br><br>
+        <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>  
+
+        <form action="http://127.0.0.1:8080/exam/create-exam-from-form" method="post" target="dummyframe">
+            <fieldset>
+                <legend>Exam Details</legend>
+                    <label for="examId">Exam Id:</label><br>
+                    <input type="text" id="examId" name="studentId" value=""><br>
+                    <label for="studentId">Student Id:</label><br>
+                    <input type="text" id="studentId" name="studentId" value=""><br>
+                    <label for="testId">Test Id :</label><br>
+                    <input type="text" id="testId" name="testId" value=""><br><br>
+                    <input class="button button2" type="submit" value="Submit">
+            </fieldset>
+        </form>
+    </div>
+
+
+
+
+
+
+<script>
+    function actionMethod() {
+    fetch("http://127.0.0.1:8080/exam/create-exam-from-form")
+            .then(Response => Response.json())
+            .then(data => createList(data));
+    }
+    function createList(data) {
+    const mainUL = document.createElement('ol');
+    for (let i = 0; i < data.result.length; i++) {
+      const studentLI = document.createElement('li');
+      studentLI.innerHTML = data.result[i].name;
+    }
+}
+
+</script>
+
+</body>
+</html>

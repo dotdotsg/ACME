@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register For Exam</title>
+    <link rel="stylesheet" href="../style/formcss.css"/>
+</head>
+<body>
+
+    <div class="bgimg">
+        
+        <form id="examIdDetail" class="middle" >
+            <fieldset class="middle">
+                <legend>Enter Exam Id</legend>
+                    <label for="examId">Exam Id:</label><br>
+                    <input type="text" id="examId" name="examId" value="" required><br>
+                <input class="button button2" type="submit" value="START EXAM">
+                <!-- <button class="button button2" onclick=actionMethod(this.value)>START EXAM</button> -->
+
+            </fieldset>
+        </form>
+    </div>
+
+
+
+<script>
+  const myForm = document.getElementById("examIdDetail");
+  myForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    console.log(formData);
+    const response = fetch("http://127.0.0.1:8080/exam/start-exam",{
+      method: "POST",
+      body: formData
+    })
+    const questionData = response.json();
+    console.log(questionData[0])
+  });
+    async function actionMethod(value) {
+      console.log(value);
+      let examId = document.getElementById("examId");
+      console.log("actionMethod called");
+      console.log("examId recieved : ",examId[0]);
+        console.log(examId)
+    const response = await fetch("http://127.0.0.1:8080/exam/start-exam",{
+  method: 'GET',
+  body: JSON.stringify(examId[0]),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});isRecieved = response.ok
+if(isRecieved){
+jsonData = await response.json();
+console.log(jsonData);
+}
+            // .then(Response => Response.json())
+            // .then(data => createList(data));
+    }
+    function createList(data) {
+    const mainUL = document.createElement('ol');
+    for (let i = 0; i < data.result.length; i++) {
+      const studentLI = document.createElement('li');
+      studentLI.innerHTML = data.result[i].name;
+    }
+}
+
+async function postexamId(examId) {
+  const object = { examId:  examId};
+  const response = await fetch('http://127.0.0.1:8080/exam/start-exam', {
+    method: 'GET',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+  });
+  
+  const responseText = await response.text();
+  console.log(responseText);
+}
+
+    async function requestJSON(value) {
+    console.log(value);
+
+
+    const jsonData = await (await fetch("http://127.0.0.1:8080/exam/start-exam")).json();
+    console.log(jsonData);
+
+    convertTable(jsonData)
+
+}
+function arrangeQuestion(jsonData){
+    let container = $("#container");
+    let demo = $("demo");
+    let table = $("<table>");
+    let cols = Object.keys(jsonData[0]);
+
+
+
+     
+    container.empty();
+    container.append(table) // Append the table to the container element
+    demo.append(jsonData.length())
+    }
+
+
+
+
+</script>
+<p> </p>
+</body>
+</html>
