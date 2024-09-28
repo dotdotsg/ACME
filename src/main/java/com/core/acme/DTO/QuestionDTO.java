@@ -16,7 +16,6 @@ import java.util.List;
 public class QuestionDTO {
         @Id
         private String id;
-
         @Indexed(unique = true)
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private String questionId;
