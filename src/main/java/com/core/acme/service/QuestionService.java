@@ -1,28 +1,27 @@
+/* (C)2025 */
 package com.core.acme.service;
 
 import com.core.acme.DTO.QuestionDTO;
-import com.core.acme.domain.Question;
-import org.bson.types.ObjectId;
-
+import com.core.acme.domain.question.Question;
 import java.util.List;
-import java.util.Optional;
 
-public interface AcmeService {
+public interface QuestionService {
 
-    Question saveQuestion(Question question) ;
+    Question saveQuestion(Question question);
+
     Question getQuestionById(String id);
+
     Question getQuestionByQuestionId(String id);
+
     Question updateQuestion(String id, Question question);
 
-
     List<Question> getAllQuestions();
-    List<Question> searchQuestionsByTag(List<String> tags);
+
+    List<Question> searchQuestionsByTags(List<String> tags);
 
     void deleteQuestion(String qid);
+
     void deleteAllQuestions();
 
     QuestionDTO convertQuestionToDTO(Question question);
-
-
-
 }

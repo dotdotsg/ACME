@@ -1,67 +1,72 @@
+/* (C)2025 */
 package com.core.acme.service.impl;
 
 import com.core.acme.DTO.QuestionDTO;
+import com.core.acme.domain.question.Question;
+import com.core.acme.repository.QuestionRepository;
+import com.core.acme.service.QuestionService;
+import com.core.acme.utils.Constants;
+import com.core.acme.utils.CustomIdUtil;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import com.core.acme.domain.Question;
-import com.core.acme.repository.AcmeRepository;
-import com.core.acme.service.AcmeService;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
-public class AcmeServiceImpl implements AcmeService {
-    
-    @Autowired
-    private AcmeRepository acmeRepository;
-    @Autowired
-    MongoTemplate mongoTemplate;
+public class QuestionServiceImpl implements QuestionService {
 
+    @Autowired private QuestionRepository questionRepository;
+    @Autowired MongoTemplate mongoTemplate;
+
+    public static String generateQuestionId() {
+        return Constants.IdPrefix.QUESTION_ID_PREFIX + "-" + CustomIdUtil.getCustomID(8);
+    }
 
     @Override
     public Question saveQuestion(Question question) {
-        return acmeRepository.save(question);
-    }  // done
+        question.setQuestionId(generateQuestionId());
+        return questionRepository.save(question);
+    }
 
     @Override
     public Question getQuestionById(String id) {
-        Optional<Question> questionOptionalObject =  acmeRepository.findById(id);
-        System.out.println("called getQuestionById :"+id);
+        Optional<Question> questionOptionalObject = questionRepository.findById(id);
+        System.out.println("called getQuestionById :" + id);
         return questionOptionalObject.orElse(null);
-    } //done
+    }
 
     @Override
     public Question getQuestionByQuestionId(String questionId) {
-        return acmeRepository.findByQuestionId(questionId);
-    } // done
+        return questionRepository.findByQuestionId(questionId);
+    }
+
     @Override
     public Question updateQuestion(String qid, Question question) {
-        Optional<Question> savedQuestion = acmeRepository.findById(qid);
-        if(savedQuestion.isPresent()){
+        Optional<Question> savedQuestion = questionRepository.findById(qid);
+        if (savedQuestion.isPresent()) {
             Question existingQuestion = savedQuestion.get();
             existingQuestion.setQuestion(question.getQuestion());
             existingQuestion.setTags(question.getTags());
             existingQuestion.setOptions(question.getOptions());
             existingQuestion.setCorrectOpt(question.getCorrectOpt());
             // save the updated Question in the repository
-            return acmeRepository.save(existingQuestion);
+            return questionRepository.save(existingQuestion);
         }
         return null;
-    }  // done
+    }
 
     @Override
     public void deleteQuestion(String qid) {
-        acmeRepository.deleteById(qid);
-    }  // done
+        questionRepository.deleteById(qid);
+    }
 
     @Override
     public void deleteAllQuestions() {
-        acmeRepository.deleteAll();
-    }  // done
+        questionRepository.deleteAll();
+    }
 
     @Override
     public QuestionDTO convertQuestionToDTO(Question question) {
@@ -77,21 +82,13 @@ public class AcmeServiceImpl implements AcmeService {
 
     @Override
     public List<Question> getAllQuestions() {
-        return acmeRepository.findAll();
-    }  // done
+        return questionRepository.findAll();
+    }
 
     @Override
-    public List<Question> searchQuestionsByTag(List<String> tags) {
+    public List<Question> searchQuestionsByTags(List<String> tags) {
         Query query = new Query();
         query.addCriteria(Criteria.where("tags").in(tags));
         return mongoTemplate.find(query, Question.class);
-    }  //done using mongoTemplate query
-    // show all Questions  [DONE]
-    // Search questions by keywords
-    // update / Edit questions  [DONE]
-    // Delete Question by ID  [DONE]
-    // search Question By ID [DONE]
-    // search Question by level : Easy Medium Hard
-    // search Question by Tags
-
+    }
 }

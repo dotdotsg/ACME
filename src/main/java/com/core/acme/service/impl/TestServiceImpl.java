@@ -1,18 +1,17 @@
+/* (C)2025 */
 package com.core.acme.service.impl;
 
-import com.core.acme.domain.Test;
+import com.core.acme.domain.test.Test;
 import com.core.acme.repository.TestRepository;
 import com.core.acme.service.TestService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class TestServiceImpl implements TestService {
 
-    @Autowired
-    private TestRepository testRepository;
+    @Autowired private TestRepository testRepository;
 
     @Override
     public Test saveTest(Test test) {
@@ -20,8 +19,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public List<Test> getAllTests()
-    {
+    public List<Test> getAllTests() {
         return testRepository.findAll();
     }
 
