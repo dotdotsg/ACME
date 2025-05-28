@@ -1,3 +1,4 @@
+/* (C)2025 */
 package com.core.acme.domain.test;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -5,13 +6,15 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 
-public enum TestDifficulty{
+public enum TestDifficulty {
     EASY("easy"),
     MEDIUM("medium"),
     HARD("hard");
 
     @Valid
-    @Pattern(regexp = "EASY|MEDIUM|HARD", message = "The Test Difficulty can be easy, medium or hard")
+    @Pattern(
+            regexp = "EASY|MEDIUM|HARD",
+            message = "The Test Difficulty can be easy, medium or hard")
     String value;
 
     TestDifficulty(String value) {

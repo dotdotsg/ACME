@@ -1,3 +1,4 @@
+/* (C)2025 */
 package com.core.acme.utils;
 
 import java.security.SecureRandom;

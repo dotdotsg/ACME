@@ -1,3 +1,4 @@
+/* (C)2025 */
 package com.core.acme.domain.exam;
 
 public enum ExamStatus {

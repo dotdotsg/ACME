@@ -1,3 +1,4 @@
+/* (C)2025 */
 package com.core.acme.utils;
 
 public class Constants {
@@ -17,4 +18,4 @@ public class Constants {
         public static final String STUDENT_PREFIX = "STU";
         public static final String TEST_ID_PREFIX = "TEST";
     }
-    }
+}

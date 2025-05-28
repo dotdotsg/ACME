@@ -1,18 +1,14 @@
+/* (C)2025 */
 package com.core.acme.domain.question;
 
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.GenerationType;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
-
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
@@ -20,10 +16,11 @@ import java.util.List;
 @Builder
 @Document(collection = "Questions")
 public class Question {
-    @Id
-    private String id;
+    @Id private String id;
+
     @Indexed(unique = true)
     private String questionId;
+
     String question;
     int difficultyLevel;
     List<String> tags;

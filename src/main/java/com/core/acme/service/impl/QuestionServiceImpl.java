@@ -1,27 +1,25 @@
+/* (C)2025 */
 package com.core.acme.service.impl;
 
 import com.core.acme.DTO.QuestionDTO;
+import com.core.acme.domain.question.Question;
+import com.core.acme.repository.QuestionRepository;
+import com.core.acme.service.QuestionService;
 import com.core.acme.utils.Constants;
 import com.core.acme.utils.CustomIdUtil;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import com.core.acme.domain.question.Question;
-import com.core.acme.repository.QuestionRepository;
-import com.core.acme.service.QuestionService;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-    
-    @Autowired
-    private QuestionRepository questionRepository;
-    @Autowired
-    MongoTemplate mongoTemplate;
+
+    @Autowired private QuestionRepository questionRepository;
+    @Autowired MongoTemplate mongoTemplate;
 
     public static String generateQuestionId() {
         return Constants.IdPrefix.QUESTION_ID_PREFIX + "-" + CustomIdUtil.getCustomID(8);
@@ -35,8 +33,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question getQuestionById(String id) {
-        Optional<Question> questionOptionalObject =  questionRepository.findById(id);
-        System.out.println("called getQuestionById :"+id);
+        Optional<Question> questionOptionalObject = questionRepository.findById(id);
+        System.out.println("called getQuestionById :" + id);
         return questionOptionalObject.orElse(null);
     }
 
@@ -48,7 +46,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Question updateQuestion(String qid, Question question) {
         Optional<Question> savedQuestion = questionRepository.findById(qid);
-        if(savedQuestion.isPresent()){
+        if (savedQuestion.isPresent()) {
             Question existingQuestion = savedQuestion.get();
             existingQuestion.setQuestion(question.getQuestion());
             existingQuestion.setTags(question.getTags());

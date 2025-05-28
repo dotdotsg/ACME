@@ -1,4 +1,6 @@
+/* (C)2025 */
 package com.core.acme.repository;
+
 import com.core.acme.domain.exam.Exam;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

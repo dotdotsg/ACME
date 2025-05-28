@@ -1,16 +1,13 @@
+/* (C)2025 */
 package com.core.acme.controller;
 
-
+import com.core.acme.domain.question.Question;
+import com.core.acme.service.QuestionService;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.core.acme.domain.question.Question;
-import com.core.acme.service.QuestionService;
-
-import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/question")
@@ -42,18 +39,18 @@ public class QuestionController {
     }
 
     @PostMapping("/create-question")
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question)
-    {
+    public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
         Question savedQuestion = questionService.saveQuestion(question);
         log.info("[QUESTION][CONTROLLER] Create Question with question details : {} ", question);
         return ResponseEntity.ok(savedQuestion);
     }
 
     @PostMapping("/create-question-from-form")
-    public ResponseEntity<Question> createQuestionFromForm(Question question)
-    {
+    public ResponseEntity<Question> createQuestionFromForm(Question question) {
         Question savedQuestion = questionService.saveQuestion(question);
-        log.info("[QUESTION][CONTROLLER] Create Question with question details via form : {} ", question);
+        log.info(
+                "[QUESTION][CONTROLLER] Create Question with question details via form : {} ",
+                question);
         return ResponseEntity.ok(savedQuestion);
     }
 }

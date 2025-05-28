@@ -1,9 +1,9 @@
+/* (C)2025 */
 package com.core.acme.utils;
 
 public class EntryUtil {
-    private EntryUtil(){
+    private EntryUtil() {}
 
-    }
     /*
     public static Supplier<List<Question>> questionEntry = () ->
     Arrays.asList(
@@ -27,9 +27,6 @@ public class EntryUtil {
      */
 }
 
-interface utilinterface{
+interface utilinterface {}
 
-}
-enum enuminterface{
-
-}
+enum enuminterface {}

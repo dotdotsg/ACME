@@ -1,30 +1,28 @@
+/* (C)2025 */
 package com.core.acme.service.impl;
 
 import com.core.acme.domain.student.Student;
 import com.core.acme.repository.StudentRepository;
 import com.core.acme.service.StudentService;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.data.mongodb.core.MongoTemplate;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    MongoTemplate mongoTemplate;
-    
+    @Autowired private StudentRepository studentRepository;
+    @Autowired MongoTemplate mongoTemplate;
+
     @Override
     public Student saveStudent(Student student) {
-        student.setStudentId(student.getStudentName()+student.getRollNo());
+        student.setStudentId(student.getStudentName() + student.getRollNo());
         return studentRepository.save(student);
-    }  // Done
+    } // Done
 
     @Override
     public List<Student> retreiveStudent(String studentName) { // List
@@ -33,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> students = mongoTemplate.find(query, Student.class);
 
         return students;
-    }         // Done
+    } // Done
 
     @Override
     public Student getStudentById(String id) {
@@ -43,16 +41,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student updateStudent(String id, Student student) {
         Optional<Student> studentOptionalObject = studentRepository.findById(id);
-        if(studentOptionalObject.isPresent()){
+        if (studentOptionalObject.isPresent()) {
             Student savedStudent = studentOptionalObject.get();
             savedStudent.setStudentName(student.getStudentName());
             savedStudent.setEmail(student.getEmail());
             savedStudent.setRollNo(student.getRollNo());
-            //savedStudent.setAdministeredTest(student.getAdministeredTest()); //
+            // savedStudent.setAdministeredTest(student.getAdministeredTest()); //
             return studentRepository.save(savedStudent);
         }
         return null;
-    }  // Done
+    } // Done
 
     @Override
     public List<Student> getAllStudents() {
@@ -62,10 +60,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteAllStudents() {
         studentRepository.deleteAll();
-    }  // Done
+    } // Done
 
     @Override
     public void deleteByStudentId(String studentId) {
         studentRepository.deleteByStudentId(studentId);
-    }  // Done
+    } // Done
 }

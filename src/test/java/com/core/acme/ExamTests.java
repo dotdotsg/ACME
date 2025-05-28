@@ -1,3 +1,4 @@
+/* (C)2025 */
 package com.core.acme;
 
 import com.core.acme.service.ExamService;
@@ -10,22 +11,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ExamTests {
 
-    @Autowired
-    private ExamService examService;
+    @Autowired private ExamService examService;
 
     @Test
-    void contextLoads() {
-    }
-    @Test
-    void chechCreateExam(){
-    }
-    @Test
-    void checkExamEnded(){
-
-    }
+    void contextLoads() {}
 
     @Test
-    void startExam(){
-        //assertNotNull(newExam);
+    void chechCreateExam() {}
+
+    @Test
+    void checkExamEnded() {}
+
+    @Test
+    void startExam() {
+        // assertNotNull(newExam);
     }
 }
