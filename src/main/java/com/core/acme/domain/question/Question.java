@@ -1,7 +1,5 @@
-package com.core.acme.domain;
+package com.core.acme.domain.question;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.GenerationType;
@@ -21,24 +19,14 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Document(collection = "Questions")
-@Entity
 public class Question {
-    @JsonProperty("id")
     @Id
     private String id;
     @Indexed(unique = true)
-    @JsonProperty("questionId")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String questionId;
     String question;
-    int difficultyLevel; //maybe a scale of 1 to 5 or 1 to 10.
+    int difficultyLevel;
     List<String> tags;
     List<String> options;
     String correctOpt;
-    //String nextQid;        // Question id of next nested question.        // implemented inside Tests
-    // add marks field
-
-
-
-
 }

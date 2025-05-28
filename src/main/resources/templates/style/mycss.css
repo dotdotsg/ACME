@@ -7,7 +7,7 @@
 
     .bgimg {
       /* Background image */
-      background-image: url('../img/bulbAndBook.jpg');
+      background-image: url("../img/bulbAndBook.jpg");
       background-size: auto;
       /* Full-screen */
       height: 100%;

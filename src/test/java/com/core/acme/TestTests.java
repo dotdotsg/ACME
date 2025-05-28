@@ -5,7 +5,6 @@ import com.core.acme.service.TestService;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class TestTests {
 
     @Test
     public void findAllTests(){
-        List<com.core.acme.domain.Test> allTests =  testService.getAllTests();
+        List<com.core.acme.domain.test.Test> allTests =  testService.getAllTests();
         System.out.println("student List  :"+allTests.size());
         for(int i =0; i<allTests.size();i++){
             System.out.println(allTests.get(i).toString());
@@ -35,7 +34,7 @@ public class TestTests {
     @Test
     public void findStudentByName(){
         String testName = "GMAT MTH 1";
-        com.core.acme.domain.Test testsWithName =  testService.getTestByName(testName);
+        com.core.acme.domain.test.Test testsWithName =  testService.getTestByName(testName);
         System.out.println("test with test name |"+testName+"| :"+testsWithName);
         
         assertNotNull(testsWithName);

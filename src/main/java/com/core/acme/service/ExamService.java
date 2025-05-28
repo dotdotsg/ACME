@@ -1,8 +1,7 @@
 package com.core.acme.service;
 
 import com.core.acme.DTO.QuestionDTO;
-import com.core.acme.domain.Exam;
-import com.core.acme.domain.Question;
+import com.core.acme.domain.exam.Exam;
 
 import java.util.List;
 

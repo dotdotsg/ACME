@@ -1,6 +1,6 @@
 package com.core.acme.service;
 
-import com.core.acme.domain.Test;
+import com.core.acme.domain.test.Test;
 
 import java.util.List;
 

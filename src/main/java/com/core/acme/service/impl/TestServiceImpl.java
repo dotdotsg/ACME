@@ -1,6 +1,6 @@
 package com.core.acme.service.impl;
 
-import com.core.acme.domain.Test;
+import com.core.acme.domain.test.Test;
 import com.core.acme.repository.TestRepository;
 import com.core.acme.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;

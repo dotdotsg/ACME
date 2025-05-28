@@ -1,6 +1,6 @@
 package com.core.acme.service.impl;
 
-import com.core.acme.domain.Student;
+import com.core.acme.domain.student.Student;
 import com.core.acme.repository.StudentRepository;
 import com.core.acme.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

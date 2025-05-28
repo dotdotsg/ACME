@@ -1,4 +1,4 @@
-package com.core.acme.domain;
+package com.core.acme.domain.student;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;

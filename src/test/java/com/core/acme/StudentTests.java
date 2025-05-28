@@ -1,6 +1,6 @@
 package com.core.acme;
 
-import com.core.acme.domain.Student;
+import com.core.acme.domain.student.Student;
 import com.core.acme.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

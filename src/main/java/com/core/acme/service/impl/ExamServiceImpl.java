@@ -1,40 +1,46 @@
 package com.core.acme.service.impl;
 
 import com.core.acme.DTO.QuestionDTO;
-import com.core.acme.domain.Exam;
-import com.core.acme.domain.Question;
-import com.core.acme.domain.Test;
+import com.core.acme.domain.exam.Exam;
+import com.core.acme.domain.question.Question;
+import com.core.acme.domain.test.Test;
 import com.core.acme.repository.ExamRepository;
-import com.core.acme.service.AcmeService;
+import com.core.acme.service.QuestionService;
 import com.core.acme.service.ExamService;
 import com.core.acme.service.TestService;
 
+import com.core.acme.utils.Constants;
+import com.core.acme.utils.CustomIdUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.core.acme.domain.enums.ExamStatus;
+import com.core.acme.domain.exam.ExamStatus;
 
 @Service
 public class ExamServiceImpl implements ExamService {
 
-    @Autowired
     private final ExamRepository examRepository;
-    @Autowired
-    private final AcmeService acmeService;
-    @Autowired
+    private final QuestionService questionService;
     private final TestService testService;
-    ExamServiceImpl(ExamRepository examRepository,AcmeService acmeService,TestService testService){
+
+    @Autowired
+    ExamServiceImpl(ExamRepository examRepository, QuestionService questionService, TestService testService){
         this.examRepository = examRepository;
-        this.acmeService = acmeService;
+        this.questionService = questionService;
         this.testService = testService;
+    }
+
+    public static String generateExamId() {
+        return Constants.IdPrefix.EXAM_ID_PREFIX + "-" + CustomIdUtil.getCustomID(8);
     }
 
     @Override
     public Exam createExam(Exam exam) {
         exam.setExamStatus(ExamStatus.NOT_YET_STARTED);
+        exam.setExamId(generateExamId());
         exam.setQuestionNumber(0);
         exam.setScore(0);
         return examRepository.save(exam);
@@ -55,7 +61,7 @@ public class ExamServiceImpl implements ExamService {
         Exam exam = examRepository.findByExamId(examId);
         Test test = testService.getTestByTestId(exam.getTestId());
         List<List<String>> questionTree = test.getQuestionsInTest();
-        Question currentQuestion = acmeService.getQuestionByQuestionId(test.getQuestionsInTest().get(exam.getCurrentQuestionIndex()).get(exam.getCurrentSubQuestionIndex()));
+        Question currentQuestion = questionService.getQuestionByQuestionId(test.getQuestionsInTest().get(exam.getCurrentQuestionIndex()).get(exam.getCurrentSubQuestionIndex()));
         exam.setQuestionNumber(exam.getQuestionNumber()+1);
         if(exam.getQuestionNumber() == test.getQuestionsToBeAttempted())
         {
@@ -190,7 +196,7 @@ public class ExamServiceImpl implements ExamService {
         Test test = testService.getTestByTestId(testId);
         String firstQuestionId = test.getQuestionsInTest().get(exam.getCurrentQuestionIndex()).get(exam.getCurrentSubQuestionIndex());
         System.out.println("first question : "+firstQuestionId);
-        return acmeService.convertQuestionToDTO(acmeService.getQuestionByQuestionId(firstQuestionId));
+        return questionService.convertQuestionToDTO(questionService.getQuestionByQuestionId(firstQuestionId));
     }
 
     @Override
@@ -202,7 +208,7 @@ public class ExamServiceImpl implements ExamService {
         Test test = testService.getTestByTestId(testId);
         String nextQuestionId = test.getQuestionsInTest().get(exam.getCurrentQuestionIndex()).get(exam.getCurrentSubQuestionIndex());
         System.out.println("Next Question called : "+nextQuestionId);
-        return acmeService.convertQuestionToDTO(acmeService.getQuestionByQuestionId(nextQuestionId));
+        return questionService.convertQuestionToDTO(questionService.getQuestionByQuestionId(nextQuestionId));
     }
     
     

@@ -1,11 +1,5 @@
 package com.core.acme.utils;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Supplier;
-
-import com.core.acme.domain.Question;
-
 public class EntryUtil {
     private EntryUtil(){
 
